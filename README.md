@@ -1,7 +1,7 @@
 # Database with Rails - Active Record - Gossip Project
 
 This work was done as a project for [The Hacking Project Bootcamp](https://www.thehackingproject.org/).
-The goal was to learn the basics of the Database with Rails and build an SQL database of a Gossip app with the main functionalities of a Gossip database, like cities, tags, sending of private messages and the relationship between the different tables.
+The goal was to learn the basics of the Database with Rails and build an SQL database of a Gossip app with the main functionalities of a Gossip database, like cities, tags, users, the ability of postint comments and like content, sending of private messages and the relationship between the different tables.
 
 ## Requirements
 
