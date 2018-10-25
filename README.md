@@ -22,13 +22,23 @@ You need at least ruby 2.5.1 (maybe under but you need to modify the Gemfile) an
 ### This is the database schema of our app:
 
 ```ruby
-ActiveRecord::Schema.define(version: 2018_10_25_202337) do
+ActiveRecord::Schema.define(version: 2018_10_25_205636) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "gossip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gossip_id"], name: "index_comments_on_gossip_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "gossips", force: :cascade do |t|
@@ -45,6 +55,17 @@ ActiveRecord::Schema.define(version: 2018_10_25_202337) do
     t.integer "tag_id"
     t.index ["gossip_id"], name: "index_gossips_tags_on_gossip_id"
     t.index ["tag_id"], name: "index_gossips_tags_on_tag_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "gossip_id"
+    t.integer "comment_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["gossip_id"], name: "index_likes_on_gossip_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "private_messages", force: :cascade do |t|
