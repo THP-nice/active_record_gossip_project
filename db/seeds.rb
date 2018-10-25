@@ -67,6 +67,22 @@ def sender(int)
   end
 end
 
+def comment_table
+  20.times do
+    comment = Comment.create!(content:Faker::HitchhikersGuideToTheGalaxy.quote,
+      gossip_id: Faker::Number.between(Gossip.first.id, Gossip.last.id),
+      user_id: Faker::Number.between(User.first.id, User.last.id))
+  end
+end
+
+def like_table
+  20.times do
+    like = Like.create!(user_id: Faker::Number.between(User.first.id, User.last.id),
+      gossip_id: Faker::Number.between(Gossip.first.id, Gossip.last.id),
+      comment_id: Faker::Number.between(Comment.first.id, Comment.last.id))
+  end
+end
+
 def perform
   city_table
   user_table
@@ -74,6 +90,8 @@ def perform
   tag_table
   gossips_tags_table
   sender(5)
+  comment_table
+  like_table
 end
 
 perform
